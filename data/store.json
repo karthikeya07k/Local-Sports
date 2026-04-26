@@ -1,0 +1,118 @@
+{
+  "users": [
+    {
+      "id": "user_c48852dd-f542-4d77-8d7d-9a2eaad70332",
+      "name": "Karthikeya",
+      "email": "karthikeya@gmail.com",
+      "passwordSalt": "a7fed285b5d6751eda14d7aa4eb2a414",
+      "passwordHash": "fd09b1825519688b0a98d561462e3e19769831c6537deb5c3d004d6eb4c62d356721fa615a5b5a7846c44b8e9420e905e6326f293c6172316b4f9a7767c2cf03",
+      "role": "user",
+      "bio": "",
+      "city": "Vijayawada",
+      "area": "SNP",
+      "preferredGames": [],
+      "preferredLocations": [
+        "Home",
+        "Society Clubhouse",
+        "Local Ground"
+      ],
+      "skillLevel": "beginner",
+      "availability": [],
+      "coordinates": null,
+      "onboardingCompleted": false,
+      "isActive": true,
+      "createdAt": "2026-04-26T15:21:01.786Z",
+      "updatedAt": "2026-04-26T15:21:01.786Z"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "sess_7fe78105-e06f-4c82-8443-574a75233728",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyX2M0ODg1MmRkLWY1NDItNGQ3Ny04ZDdkLTlhMmVhYWQ3MDMzMiIsInNpZCI6InNlc3NfN2ZlNzgxMDUtZTA2Zi00YzgyLTg0NDMtNTc0YTc1MjMzNzI4Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzcyMTY4NjEsImV4cCI6MTc3ODQyNjQ2MX0.EHIkltmsRxFKuxqnnge6rIv-e17Trl6FMJ5O3tGUntM",
+      "userId": "user_c48852dd-f542-4d77-8d7d-9a2eaad70332",
+      "createdAt": "2026-04-26T15:21:01.854Z",
+      "expiresAt": "2026-05-10T15:21:01.854Z"
+    }
+  ],
+  "games": [
+    {
+      "id": "game_chess",
+      "name": "Chess",
+      "category": "Indoor"
+    },
+    {
+      "id": "game_carrom",
+      "name": "Carrom",
+      "category": "Indoor"
+    },
+    {
+      "id": "game_cards",
+      "name": "Cards",
+      "category": "Indoor"
+    },
+    {
+      "id": "game_badminton",
+      "name": "Badminton",
+      "category": "Outdoor"
+    },
+    {
+      "id": "game_table_tennis",
+      "name": "Table Tennis",
+      "category": "Indoor"
+    },
+    {
+      "id": "game_tennis",
+      "name": "Tennis",
+      "category": "Outdoor"
+    },
+    {
+      "id": "game_football",
+      "name": "Football",
+      "category": "Outdoor"
+    },
+    {
+      "id": "game_cricket",
+      "name": "Cricket",
+      "category": "Outdoor"
+    }
+  ],
+  "playRequests": [],
+  "communities": [
+    {
+      "id": "community_6832cc5d-6883-4c09-b5ae-cd61b80d84cc",
+      "name": "hero",
+      "description": "",
+      "locality": "SNP",
+      "games": [
+        "Badminton"
+      ],
+      "organizerId": "user_c48852dd-f542-4d77-8d7d-9a2eaad70332",
+      "memberIds": [
+        "user_c48852dd-f542-4d77-8d7d-9a2eaad70332"
+      ],
+      "verified": false,
+      "createdAt": "2026-04-26T15:27:27.689Z",
+      "updatedAt": "2026-04-26T15:27:27.689Z"
+    }
+  ],
+  "communitySessions": [
+    {
+      "id": "session_56e2f7ed-c186-41a4-966b-6b2ae61d5cf9",
+      "communityId": "community_6832cc5d-6883-4c09-b5ae-cd61b80d84cc",
+      "createdBy": "user_c48852dd-f542-4d77-8d7d-9a2eaad70332",
+      "game": "Badminton",
+      "location": "SNP",
+      "day": "Monday",
+      "time": "20:57",
+      "recurring": "bi-weekly",
+      "slots": 7,
+      "participantIds": [
+        "user_c48852dd-f542-4d77-8d7d-9a2eaad70332"
+      ],
+      "createdAt": "2026-04-26T15:28:06.988Z",
+      "updatedAt": "2026-04-26T15:28:06.988Z"
+    }
+  ],
+  "reports": [],
+  "notifications": []
+}

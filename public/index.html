@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Sports & Indoor Games Partner Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="bg-grid"></div>
+
+    <header class="hero">
+      <p class="eyebrow">Community-Based Real-Time Matchmaking Platform</p>
+      <h1>Local Sports & Indoor Games Partner Finder</h1>
+      <p class="subtitle">
+        Discover nearby partners for chess, carrom, cards, badminton, table tennis, and more across home, society
+        clubhouse, and local grounds.
+      </p>
+      <div class="hero-tags">
+        <span>Fast Search (&lt;3s Target)</span>
+        <span>Real-Time Request Updates</span>
+        <span>Community + Admin Console</span>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section id="authSection" class="card auth-card">
+        <div class="auth-tabs">
+          <button type="button" id="showLoginBtn" class="tab-btn active">Login</button>
+          <button type="button" id="showRegisterBtn" class="tab-btn">Register</button>
+        </div>
+
+        <form id="loginForm" class="stack-form">
+          <h2>Welcome Back</h2>
+          <label>Email</label>
+          <input type="email" name="email" placeholder="you@example.com" required />
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Minimum 6 characters" required />
+          <button class="btn-primary" type="submit">Login</button>
+        </form>
+
+        <form id="registerForm" class="stack-form hidden">
+          <h2>Create Account</h2>
+          <label>Full Name</label>
+          <input type="text" name="name" placeholder="Your name" required />
+          <label>Email</label>
+          <input type="email" name="email" placeholder="you@example.com" required />
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Minimum 6 characters" required />
+          <label>City</label>
+          <input type="text" name="city" placeholder="Hyderabad" />
+          <label>Area / Locality</label>
+          <input type="text" name="area" placeholder="Madhapur" />
+          <label>Role</label>
+          <select name="role">
+            <option value="user">Player</option>
+            <option value="organizer">Community Organizer</option>
+            <option value="admin">Admin</option>
+          </select>
+          <label>Admin Code (only for admin)</label>
+          <input type="text" name="adminCode" placeholder="Optional" />
+          <button class="btn-primary" type="submit">Create Account</button>
+        </form>
+      </section>
+
+      <section id="appSection" class="app-shell hidden">
+        <aside class="card sidebar">
+          <div>
+            <p class="eyebrow">Signed In</p>
+            <h3 id="sidebarName">Player</h3>
+            <p id="sidebarMeta" class="muted"></p>
+            <p id="realtimeStatus" class="realtime offline">Realtime: Offline</p>
+          </div>
+
+          <nav id="navButtons" class="sidebar-nav">
+            <button data-section="home" class="nav-btn active">Home</button>
+            <button data-section="onboarding" class="nav-btn">Player Onboarding</button>
+            <button data-section="discovery" class="nav-btn">Find Partners</button>
+            <button data-section="requests" class="nav-btn">Requests</button>
+            <button data-section="history" class="nav-btn">History</button>
+            <button data-section="communities" class="nav-btn">Communities</button>
+            <button data-section="profile" class="nav-btn">Profile</button>
+            <button data-section="admin" class="nav-btn" id="adminNavBtn">Admin</button>
+          </nav>
+
+          <button id="logoutBtn" type="button" class="btn-ghost">Logout</button>
+        </aside>
+
+        <section class="content-area">
+          <section id="homeSection" class="card panel active">
+            <div class="panel-head">
+              <h2>Dashboard</h2>
+              <button id="refreshDashboardBtn" class="btn-ghost" type="button">Refresh</button>
+            </div>
+            <div id="homeKpis" class="kpi-grid"></div>
+            <div class="split-grid">
+              <article class="sub-card">
+                <h3>Recommended Nearby Players</h3>
+                <div id="recommendationsList" class="list-stack"></div>
+              </article>
+              <article class="sub-card">
+                <h3>Live Notifications</h3>
+                <div id="notificationList" class="list-stack"></div>
+              </article>
+            </div>
+          </section>
+
+          <section id="onboardingSection" class="card panel">
+            <div class="panel-head">
+              <h2>Player Onboarding Module</h2>
+              <p class="muted">Guided setup for game preferences, schedule, and locality.</p>
+            </div>
+            <div class="stepper">
+              <div class="step active" data-step="1">1. Games</div>
+              <div class="step" data-step="2">2. Schedule</div>
+              <div class="step" data-step="3">3. Skill</div>
+            </div>
+            <form id="onboardingForm" class="stack-form">
+              <div class="onboard-pane active" data-step="1">
+                <label>Preferred Games</label>
+                <div id="onboardingGames" class="chips"></div>
+              </div>
+
+              <div class="onboard-pane" data-step="2">
+                <label>City</label>
+                <input type="text" id="onboardCity" placeholder="City" />
+                <label>Area / Locality</label>
+                <input type="text" id="onboardArea" placeholder="Area or neighborhood" />
+                <label>Coordinates (required for nearby search)</label>
+                <div class="geo-inline">
+                  <input type="number" step="any" id="onboardLat" placeholder="Latitude" />
+                  <input type="number" step="any" id="onboardLng" placeholder="Longitude" />
+                </div>
+                <button type="button" id="onboardUseLocationBtn" class="btn-ghost">Use My Current Location</button>
+                <p id="onboardGeoStatus" class="muted">No coordinates set</p>
+                <label>Preferred Playing Locations</label>
+                <div class="inline-checks">
+                  <label><input type="checkbox" value="Home" checked /> Home</label>
+                  <label><input type="checkbox" value="Society Clubhouse" checked /> Society Clubhouse</label>
+                  <label><input type="checkbox" value="Local Ground" checked /> Local Ground</label>
+                </div>
+                <label>Availability Slots</label>
+                <div id="onboardingAvailability" class="slot-list"></div>
+                <button type="button" id="addOnboardingSlotBtn" class="btn-ghost">Add Availability Slot</button>
+              </div>
+
+              <div class="onboard-pane" data-step="3">
+                <label>Skill Level</label>
+                <select id="onboardSkill">
+                  <option value="beginner">Beginner</option>
+                  <option value="intermediate">Intermediate</option>
+                  <option value="advanced">Advanced</option>
+                </select>
+                <label>About You</label>
+                <textarea id="onboardBio" rows="4" placeholder="Share how you like to play and coordinate..."></textarea>
+              </div>
+
+              <div class="step-actions">
+                <button type="button" id="onboardPrevBtn" class="btn-ghost">Back</button>
+                <button type="button" id="onboardNextBtn" class="btn-primary">Next</button>
+                <button type="submit" id="onboardSaveBtn" class="btn-primary hidden">Complete Onboarding</button>
+              </div>
+            </form>
+          </section>
+
+          <section id="discoverySection" class="card panel">
+            <div class="panel-head">
+              <h2>Find Nearby Partners</h2>
+            </div>
+            <form id="searchForm" class="grid-form">
+              <div>
+                <label>Game Type</label>
+                <select id="searchGame"></select>
+              </div>
+              <div>
+                <label>Skill Level</label>
+                <select id="searchSkill">
+                  <option value="">Any</option>
+                  <option value="beginner">Beginner</option>
+                  <option value="intermediate">Intermediate</option>
+                  <option value="advanced">Advanced</option>
+                </select>
+              </div>
+              <div>
+                <label>Day</label>
+                <select id="searchDay">
+                  <option value="">Any</option>
+                  <option>Monday</option>
+                  <option>Tuesday</option>
+                  <option>Wednesday</option>
+                  <option>Thursday</option>
+                  <option>Friday</option>
+                  <option>Saturday</option>
+                  <option>Sunday</option>
+                </select>
+              </div>
+              <div>
+                <label>Time</label>
+                <input id="searchTime" type="time" />
+              </div>
+              <div>
+                <label>Search Radius (km)</label>
+                <input id="searchRadius" type="number" min="1" max="50" value="5" />
+              </div>
+              <div>
+                <label>Latitude</label>
+                <input id="searchLat" type="number" step="any" placeholder="Latitude" />
+              </div>
+              <div>
+                <label>Longitude</label>
+                <input id="searchLng" type="number" step="any" placeholder="Longitude" />
+              </div>
+              <div>
+                <label>Location Keyword (optional)</label>
+                <input id="searchLocation" type="text" placeholder="Society, area, locality" />
+              </div>
+              <div>
+                <label>Message to Include</label>
+                <input id="searchMessage" type="text" placeholder="Let us play this weekend!" />
+              </div>
+              <div class="grid-full">
+                <button type="button" id="searchUseLocationBtn" class="btn-ghost">Use My Current Location</button>
+              </div>
+              <div class="grid-full">
+                <button class="btn-primary" type="submit">Search Players</button>
+              </div>
+            </form>
+            <div id="searchResults" class="list-stack"></div>
+          </section>
+
+          <section id="requestsSection" class="card panel">
+            <div class="panel-head">
+              <h2>Play Requests</h2>
+              <button id="refreshRequestsBtn" class="btn-ghost" type="button">Refresh</button>
+            </div>
+            <div class="split-grid">
+              <article class="sub-card">
+                <h3>Incoming</h3>
+                <div id="incomingRequests" class="list-stack"></div>
+              </article>
+              <article class="sub-card">
+                <h3>Outgoing</h3>
+                <div id="outgoingRequests" class="list-stack"></div>
+              </article>
+            </div>
+          </section>
+
+          <section id="historySection" class="card panel">
+            <div class="panel-head">
+              <h2>Match / Play History</h2>
+              <button id="refreshHistoryBtn" class="btn-ghost" type="button">Refresh</button>
+            </div>
+            <div id="historyList" class="list-stack"></div>
+          </section>
+
+          <section id="communitiesSection" class="card panel">
+            <div class="panel-head">
+              <h2>Communities & Open Sessions</h2>
+            </div>
+            <div class="split-grid">
+              <article class="sub-card">
+                <h3>Create Community</h3>
+                <form id="communityForm" class="stack-form compact">
+                  <label>Community Name</label>
+                  <input type="text" id="communityName" required />
+                  <label>Description</label>
+                  <textarea id="communityDescription" rows="3"></textarea>
+                  <label>Locality</label>
+                  <input type="text" id="communityLocality" required />
+                  <label>Games Supported</label>
+                  <div id="communityGames" class="chips"></div>
+                  <button type="submit" class="btn-primary">Create Community</button>
+                </form>
+              </article>
+
+              <article class="sub-card">
+                <h3>Post Open Play Session</h3>
+                <form id="sessionForm" class="stack-form compact">
+                  <label>Community</label>
+                  <select id="sessionCommunityId" required></select>
+                  <label>Game</label>
+                  <select id="sessionGame" required></select>
+                  <label>Location</label>
+                  <input id="sessionLocation" type="text" placeholder="Court A / Ground" required />
+                  <label>Day</label>
+                  <select id="sessionDay" required>
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                    <option>Sunday</option>
+                  </select>
+                  <label>Time</label>
+                  <input id="sessionTime" type="time" required />
+                  <label>Recurring Pattern</label>
+                  <select id="sessionRecurring">
+                    <option value="none">None</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="bi-weekly">Bi-weekly</option>
+                  </select>
+                  <label>Max Slots (optional)</label>
+                  <input id="sessionSlots" type="number" min="0" max="50" value="0" />
+                  <button type="submit" class="btn-primary">Post Session</button>
+                </form>
+              </article>
+            </div>
+
+            <div class="split-grid">
+              <article class="sub-card">
+                <h3>Community Directory</h3>
+                <div id="communityList" class="list-stack"></div>
+              </article>
+              <article class="sub-card">
+                <h3>Open Play Sessions</h3>
+                <div id="sessionList" class="list-stack"></div>
+              </article>
+            </div>
+          </section>
+
+          <section id="profileSection" class="card panel">
+            <div class="panel-head">
+              <h2>Profile Management</h2>
+            </div>
+            <form id="profileForm" class="grid-form">
+              <div>
+                <label>Name</label>
+                <input type="text" id="profileName" required />
+              </div>
+              <div>
+                <label>City</label>
+                <input type="text" id="profileCity" />
+              </div>
+              <div>
+                <label>Area</label>
+                <input type="text" id="profileArea" />
+              </div>
+              <div>
+                <label>Latitude</label>
+                <input type="number" step="any" id="profileLat" placeholder="Latitude" />
+              </div>
+              <div>
+                <label>Longitude</label>
+                <input type="number" step="any" id="profileLng" placeholder="Longitude" />
+              </div>
+              <div class="grid-full">
+                <button id="profileUseLocationBtn" type="button" class="btn-ghost">Use My Current Location</button>
+              </div>
+              <div>
+                <label>Skill Level</label>
+                <select id="profileSkill">
+                  <option value="beginner">Beginner</option>
+                  <option value="intermediate">Intermediate</option>
+                  <option value="advanced">Advanced</option>
+                </select>
+              </div>
+              <div class="grid-full">
+                <label>Preferred Games</label>
+                <div id="profileGames" class="chips"></div>
+              </div>
+              <div class="grid-full">
+                <label>Preferred Playing Locations</label>
+                <input id="profileLocations" type="text" placeholder="Home, Society Clubhouse, Local Ground" />
+              </div>
+              <div class="grid-full">
+                <label>Availability Slots</label>
+                <div id="profileAvailability" class="slot-list"></div>
+                <button id="addProfileSlotBtn" type="button" class="btn-ghost">Add Availability Slot</button>
+              </div>
+              <div class="grid-full">
+                <label>Bio</label>
+                <textarea id="profileBio" rows="4"></textarea>
+              </div>
+              <div class="grid-full">
+                <button class="btn-primary" type="submit">Save Profile</button>
+              </div>
+            </form>
+          </section>
+
+          <section id="adminSection" class="card panel">
+            <div class="panel-head">
+              <h2>Admin Dashboard</h2>
+              <button id="refreshAdminBtn" class="btn-ghost" type="button">Refresh</button>
+            </div>
+
+            <div id="adminKpis" class="kpi-grid"></div>
+
+            <div class="split-grid">
+              <article class="sub-card">
+                <h3>Game Category Management</h3>
+                <form id="addGameForm" class="stack-form compact">
+                  <label>Game Name</label>
+                  <input id="adminGameName" type="text" required />
+                  <label>Category</label>
+                  <select id="adminGameCategory">
+                    <option>Indoor</option>
+                    <option>Outdoor</option>
+                  </select>
+                  <button class="btn-primary" type="submit">Add Game</button>
+                </form>
+              </article>
+              <article class="sub-card">
+                <h3>Community Verification Queue</h3>
+                <div id="adminCommunities" class="list-stack"></div>
+              </article>
+            </div>
+
+            <article class="sub-card">
+              <h3>User Management</h3>
+              <div id="adminUsers" class="list-stack"></div>
+            </article>
+
+            <article class="sub-card">
+              <h3>Misuse Reports</h3>
+              <div id="adminReports" class="list-stack"></div>
+            </article>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <div id="toastContainer" class="toast-host"></div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

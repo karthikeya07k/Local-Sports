@@ -1,0 +1,19 @@
+{
+  "name": "local-sports-partner-finder",
+  "version": "1.0.0",
+  "description": "Real-time local sports and indoor games partner finder platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "sports",
+    "community",
+    "matchmaking",
+    "realtime",
+    "indoor-games"
+  ],
+  "author": "Codex",
+  "license": "MIT"
+}
