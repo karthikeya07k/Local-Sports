@@ -25,15 +25,7 @@
       "updatedAt": "2026-04-26T15:21:01.786Z"
     }
   ],
-  "sessions": [
-    {
-      "id": "sess_7fe78105-e06f-4c82-8443-574a75233728",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyX2M0ODg1MmRkLWY1NDItNGQ3Ny04ZDdkLTlhMmVhYWQ3MDMzMiIsInNpZCI6InNlc3NfN2ZlNzgxMDUtZTA2Zi00YzgyLTg0NDMtNTc0YTc1MjMzNzI4Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzcyMTY4NjEsImV4cCI6MTc3ODQyNjQ2MX0.EHIkltmsRxFKuxqnnge6rIv-e17Trl6FMJ5O3tGUntM",
-      "userId": "user_c48852dd-f542-4d77-8d7d-9a2eaad70332",
-      "createdAt": "2026-04-26T15:21:01.854Z",
-      "expiresAt": "2026-05-10T15:21:01.854Z"
-    }
-  ],
+  "sessions": [],
   "games": [
     {
       "id": "game_chess",
